@@ -10,13 +10,12 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-@Getter
 @Setter
+@Getter
 @ToString
 @AllArgsConstructor
-public class User {
-    private Integer id;
-    private String name;
-    private Date birthDate;
-    private List<Post> posts;
+public class Post {
+    private int postId;
+    private String description;
+    private Date publishDate;
 }
