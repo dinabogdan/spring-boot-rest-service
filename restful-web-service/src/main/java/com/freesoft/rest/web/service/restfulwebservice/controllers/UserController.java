@@ -2,6 +2,8 @@ package com.freesoft.rest.web.service.restfulwebservice.controllers;
 
 import com.freesoft.rest.web.service.restfulwebservice.beans.User;
 import com.freesoft.rest.web.service.restfulwebservice.dao.UserDAOService;
+import com.freesoft.rest.web.service.restfulwebservice.exceptions.UserNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@Slf4j
 @RestController
 public class UserController {
 
@@ -18,16 +21,23 @@ public class UserController {
 
     @GetMapping(value = "/users")
     public List<User> getAllUsers() {
+        log.debug("### Enter: getAllUsers");
         return userService.findAll();
     }
 
     @GetMapping(value = "/users/{userId}")
     public User getSpecificUser(@PathVariable int userId) {
-        return userService.findOne(userId);
+        log.debug("### Enter: getSpecificUser");
+        User user = userService.findOne(userId);
+        if (user == null) {
+            throw new UserNotFoundException("The user with id: " + userId + " wasn't found!");
+        }
+        return user;
     }
 
     @PutMapping(value = "/users")
     public ResponseEntity<Object> addUser(@RequestBody User user) {
+        log.debug("### Enter: addUser");
         User savedUser = userService.save(user);
         URI uriLocation = ServletUriComponentsBuilder.
                 fromCurrentRequest().
@@ -39,9 +49,9 @@ public class UserController {
                 build();
     }
 
-
     @DeleteMapping(value = "/users/{userId}")
     public void deleteUserById(@PathVariable int userId) {
+        log.debug("### Enter: deleteUserById");
         userService.removeUser(userId);
     }
 }

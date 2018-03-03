@@ -1,12 +1,14 @@
 package com.freesoft.rest.web.service.restfulwebservice.dao;
 
 import com.freesoft.rest.web.service.restfulwebservice.beans.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Repository
 public class UserDAOService {
 
@@ -32,7 +34,12 @@ public class UserDAOService {
     }
 
     public User findOne(int id) {
-        return users.stream().filter(u -> u.getId() == id).findFirst().get();
+        for (User user : users) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
     }
 
     public void removeUser(int id) {
