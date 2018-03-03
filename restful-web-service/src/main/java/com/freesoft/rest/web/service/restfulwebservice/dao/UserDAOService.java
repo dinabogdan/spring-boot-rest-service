@@ -31,8 +31,16 @@ public class UserDAOService {
         return user;
     }
 
-    public User findOne(int id){
+    public User findOne(int id) {
         return users.stream().filter(u -> u.getId() == id).findFirst().get();
+    }
+
+    public void removeUser(int id) {
+        for (User user : users) {
+            if (user.getId() == id) {
+                users.remove(user);
+            }
+        }
     }
 
 }
