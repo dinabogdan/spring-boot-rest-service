@@ -1,4 +1,4 @@
-package com.freesoft.rest.web.service.restfulwebservice.exceptions;
+package com.freesoft.rest.web.service.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @AllArgsConstructor
-public class ResponseException {
+public class ExceptionResponse {
 
     private Date timestamp;
     private String message;

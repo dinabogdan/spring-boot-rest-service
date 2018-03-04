@@ -1,4 +1,4 @@
-package com.freesoft.rest.web.service.restfulwebservice.beans;
+package com.freesoft.rest.web.service.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

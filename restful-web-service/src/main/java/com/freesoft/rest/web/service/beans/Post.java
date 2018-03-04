@@ -1,4 +1,4 @@
-package com.freesoft.rest.web.service.restfulwebservice.beans;
+package com.freesoft.rest.web.service.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,6 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
-import java.util.List;
 
 @Slf4j
 @Setter

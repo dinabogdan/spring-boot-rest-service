@@ -1,4 +1,4 @@
-package com.freesoft.rest.web.service.restfulwebservice.exceptions;
+package com.freesoft.rest.web.service.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

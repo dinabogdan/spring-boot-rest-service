@@ -1,7 +1,7 @@
-package com.freesoft.rest.web.service.restfulwebservice.dao;
+package com.freesoft.rest.web.service.dao;
 
-import com.freesoft.rest.web.service.restfulwebservice.beans.Post;
-import com.freesoft.rest.web.service.restfulwebservice.beans.User;
+import com.freesoft.rest.web.service.beans.Post;
+import com.freesoft.rest.web.service.beans.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

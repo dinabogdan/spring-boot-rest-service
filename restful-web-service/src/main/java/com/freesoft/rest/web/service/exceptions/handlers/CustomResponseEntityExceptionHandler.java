@@ -1,5 +1,7 @@
-package com.freesoft.rest.web.service.restfulwebservice.exceptions;
+package com.freesoft.rest.web.service.exceptions.handlers;
 
+import com.freesoft.rest.web.service.beans.ExceptionResponse;
+import com.freesoft.rest.web.service.exceptions.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +21,8 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     @ExceptionHandler(Exception.class)
     private final ResponseEntity<Object> handleAllExceptions(Exception exception, WebRequest request) {
         log.error("### Some EXCEPTION!!!");
-        ResponseException exceptionResponse =
-                new ResponseException(new Date(),
+        ExceptionResponse exceptionResponse =
+                new ExceptionResponse(new Date(),
                         exception.getMessage(),
                         request.getDescription(false));
 
@@ -31,8 +33,8 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     private final ResponseEntity<Object> handleUserNotFoundException
             (UserNotFoundException userNotFoundException, WebRequest request) {
         log.error("### Some UserNotFoundEXCEPTION!!!");
-        ResponseException exceptionResponse =
-                new ResponseException(new Date(),
+        ExceptionResponse exceptionResponse =
+                new ExceptionResponse(new Date(),
                         userNotFoundException.getMessage(),
                         request.getDescription(false));
 

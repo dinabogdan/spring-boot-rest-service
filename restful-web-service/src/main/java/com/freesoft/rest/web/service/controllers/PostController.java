@@ -1,7 +1,7 @@
-package com.freesoft.rest.web.service.restfulwebservice.controllers;
+package com.freesoft.rest.web.service.controllers;
 
-import com.freesoft.rest.web.service.restfulwebservice.beans.Post;
-import com.freesoft.rest.web.service.restfulwebservice.dao.PostDAOService;
+import com.freesoft.rest.web.service.beans.Post;
+import com.freesoft.rest.web.service.dao.PostDAOService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

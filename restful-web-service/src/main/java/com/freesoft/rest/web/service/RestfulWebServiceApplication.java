@@ -1,4 +1,4 @@
-package com.freesoft.rest.web.service.restfulwebservice;
+package com.freesoft.rest.web.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,8 +1,8 @@
-package com.freesoft.rest.web.service.restfulwebservice.controllers;
+package com.freesoft.rest.web.service.controllers;
 
-import com.freesoft.rest.web.service.restfulwebservice.beans.User;
-import com.freesoft.rest.web.service.restfulwebservice.dao.UserDAOService;
-import com.freesoft.rest.web.service.restfulwebservice.exceptions.UserNotFoundException;
+import com.freesoft.rest.web.service.beans.User;
+import com.freesoft.rest.web.service.dao.UserDAOService;
+import com.freesoft.rest.web.service.exceptions.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
