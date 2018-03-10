@@ -5,6 +5,8 @@ import com.freesoft.rest.web.service.dao.UserDAOService;
 import com.freesoft.rest.web.service.exceptions.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -12,6 +14,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 @Slf4j
 @RestController
@@ -27,13 +31,18 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/{userId}")
-    public User getSpecificUser(@PathVariable int userId) {
+    public Resource<User> getSpecificUser(@PathVariable int userId) {
         log.debug("### Enter: getSpecificUser");
         User user = userService.findOne(userId);
         if (user == null) {
             throw new UserNotFoundException("The user with id: " + userId + " wasn't found!");
         }
-        return user;
+
+        Resource<User> resource = new Resource<>(user);
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getAllUsers());
+        resource.add(linkTo.withRel("all-users"));
+
+        return resource;
     }
 
     @PutMapping(value = "/users")
