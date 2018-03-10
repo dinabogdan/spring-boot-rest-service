@@ -3,8 +3,10 @@ package com.freesoft.rest.web.service.exceptions.handlers;
 import com.freesoft.rest.web.service.beans.ExceptionResponse;
 import com.freesoft.rest.web.service.exceptions.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +21,7 @@ import java.util.Date;
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    private final ResponseEntity<Object> handleAllExceptions(Exception exception, WebRequest request) {
+    private final ResponseEntity handleAllExceptions(Exception exception, WebRequest request) {
         log.error("### Some EXCEPTION!!!");
         ExceptionResponse exceptionResponse =
                 new ExceptionResponse(new Date(),
@@ -30,7 +32,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    private final ResponseEntity<Object> handleUserNotFoundException
+    private final ResponseEntity handleUserNotFoundException
             (UserNotFoundException userNotFoundException, WebRequest request) {
         log.error("### Some UserNotFoundEXCEPTION!!!");
         ExceptionResponse exceptionResponse =
@@ -39,5 +41,14 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
                         request.getDescription(false));
 
         return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @Override
+    protected ResponseEntity handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        log.error("### Some Exception!!! Something invalid on the object!");
+        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(),
+                "Validation failed!",
+                ex.getBindingResult().toString());
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Slf4j
@@ -59,12 +60,16 @@ public class UserDAOService {
         return null;
     }
 
-    public void removeUser(int id) {
-        for (User user : users) {
-            if (user.getId() == id) {
-                users.remove(user);
+    public User removeUserById(int userId) {
+        Iterator<User> iterator = users.iterator();
+        while (iterator.hasNext()) {
+            User user = iterator.next();
+            if (user.getId() == userId) {
+                iterator.remove();
+                return user;
             }
         }
+        return null;
     }
 
 }
