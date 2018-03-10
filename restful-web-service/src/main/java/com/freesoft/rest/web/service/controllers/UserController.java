@@ -5,6 +5,7 @@ import com.freesoft.rest.web.service.dao.UserDAOService;
 import com.freesoft.rest.web.service.exceptions.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 @Slf4j
 @RestController
 public class UserController {
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     private UserDAOService userService;
