@@ -32,6 +32,6 @@ public class User {
     @NotNull(message = "BirthDate should not be null.")
     @ApiModelProperty(notes="BirthDate should be in past.")
     private Date birthDate;
-    
+
     private List<Post> posts;
 }
